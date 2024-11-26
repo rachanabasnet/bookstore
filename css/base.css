@@ -132,3 +132,21 @@ body {
     display: block;
   }
 }
+
+@media screen and (max-width: 1025px) {
+  .primaryBtn,
+  .secBtn,
+  .tertiaryBtn {
+    width: 150px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .primaryBtn,
+  .secBtn,
+  .tertiaryBtn {
+    width: 100px;
+    font-size: 12px;
+  }
+}

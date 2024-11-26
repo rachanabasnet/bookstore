@@ -68,3 +68,24 @@ body {
     }
   }
 }
+
+@media screen and (max-width: 1025px) {
+  body {
+    .header {
+      display: flex;
+      flex-direction: column;
+
+      .bookNavbar {
+        .title {
+          font-size: 34px;
+        }
+      }
+
+      .placeholderImg {
+        .heroImg {
+          height: 500px;
+        }
+      }
+    }
+  }
+}

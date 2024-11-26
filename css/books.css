@@ -74,3 +74,24 @@
   margin-bottom: 10px;
   margin-left: 10px;
 }
+
+@media screen and (max-width: 1280px) {
+  .container {
+    margin: 4px 2rem;
+  }
+  #bookContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #bookContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #bookContainer {
+    grid-template-columns: 1fr;
+  }
+}

@@ -50,3 +50,9 @@ textarea {
   text-align: center;
   color: green;
 }
+
+@media screen and (max-width: 450px) {
+  .container {
+    width: 80%;
+  }
+}
