@@ -28,10 +28,14 @@
       crossorigin="anonymous"
     ></script>
 
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      rel="stylesheet"
+    />
+
     <!-- Importing js and style file into the html -->
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/base.css" />
-    <link rel="script" href="index.js" />
   </head>
   <body>
     <div class="container">
@@ -41,9 +45,9 @@
           <div class="navList">
             <div class="brand">Bookstore.</div>
             <div class="pages">
-              <span>Home</span>
-              <span>Shop</span>
-              <span>Contact</span>
+              <span><a href="index.html">Home</a></span>
+              <span><a href="books.html">Shop</a></span>
+              <span><a href="contact.html">Contact</a></span>
             </div>
           </div>
           <div class="title">
@@ -55,7 +59,15 @@
             Not sure what you are looking for? <br />
             Explore Here.<br />
             <div class="btnGroup">
-              <button class="primaryBtn">Explore Now</button>
+              <a href="books.html"
+                ><button class="primaryBtn">Explore Now</button></a
+              >
+
+              <a href="login.html">
+                <button class="secBtn" title="Log In">
+                  <i class="fa fa-sign-in" aria-hidden="true"></i> Log In
+                </button>
+              </a>
             </div>
           </div>
         </div>
