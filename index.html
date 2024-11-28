@@ -33,48 +33,62 @@
       rel="stylesheet"
     />
 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.js"></script>
+
     <!-- Importing js and style file into the html -->
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/base.css" />
+
+    <script src="js/index.js"></script>
   </head>
   <body>
     <div class="container">
-      <!-- Header of the page -->
-      <div class="header">
-        <div class="bookNavbar">
-          <div class="navList">
-            <div class="brand">Bookstore.</div>
-            <div class="pages">
-              <span><a href="index.html">Home</a></span>
-              <span><a href="books.html">Shop</a></span>
-              <span><a href="contact.html">Contact</a></span>
-            </div>
-          </div>
-          <div class="title">
-            What Book <br />
-            Are You <br />Looking For?
-          </div>
-          <div class="subTitle">
-            You can find variety of books in our catalog. <br />
-            Not sure what you are looking for? <br />
-            Explore Here.<br />
-            <div class="btnGroup">
-              <a href="books.html"
-                ><button class="primaryBtn">Explore Now</button></a
-              >
-
-              <a href="login.html">
-                <button class="secBtn" title="Log In">
-                  <i class="fa fa-sign-in" aria-hidden="true"></i> Log In
-                </button>
-              </a>
-            </div>
+      <div class="bookNavbar">
+        <div class="navList">
+          <div class="brand">Bookstore.</div>
+          <div class="pages">
+            <span><a href="index.html">Home</a></span>
+            <span><a href="books.html">Shop</a></span>
+            <span><a href="contact.html">Contact</a></span>
+            <span><a href="login.html">SignIn/SignUp</a></span>
           </div>
         </div>
+        <div class="title">What Book Are You <br />Looking For?</div>
+        <div class="subTitle">
+          You can find variety of books in our catalog. <br />
+          Not sure what you are looking for? <br />
+          Explore Here.<br />
+          <div class="btnGroup mt-4">
+            <a href="books.html"
+              ><button class="btn primaryLightBtn">Explore Now</button></a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="bgImages">
+        <div class="bxslider">
+          <div>
+            <img src="images/hero1.jpg" alt="book holding" />
+          </div>
+          <div>
+            <img src="images/hero2.jpg" alt="bookshelf" />
+          </div>
+          <div>
+            <img src="images/hero3.jpg" alt="background 3" />
+          </div>
+        </div>
+      </div>
+      <!-- Header of the page -->
+      <!-- <div class="header">
         <div class="placeholderImg">
           <img src="images/bookshelf.jpg" alt="BookSel" class="heroImg" />
         </div>
-      </div>
+      </div> -->
     </div>
   </body>
 </html>

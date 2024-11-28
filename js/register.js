@@ -46,6 +46,16 @@ $(document).ready(function () {
       isValid = false;
     }
 
+    $.getJSON("data/users.json", function (users) {
+      // Check if the user exists in the list
+      const userExists = users.some((user) => user.username === username);
+
+      if (userExists) {
+        $("#usernameError").text("User with username already exists.");
+        isValid = false;
+      }
+    });
+
     // Validate address
     if (address === "") {
       $("#addressError").text("Please enter your Address.");
@@ -69,6 +79,7 @@ $(document).ready(function () {
 
       if (!passwordRegex.test(password)) {
         $("#passwordError").text("Please enter correct Password.");
+        isValid = false;
       }
     }
 
@@ -84,7 +95,30 @@ $(document).ready(function () {
 
     // Show success message if all the fields are valid
     if (isValid) {
-      $("#success").text("You are successfully registered to the system!!!");
+      $.getJSON("data/users.json", function (users) {
+        const newUser = {
+          username: username,
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+          address: address,
+          gender: gender,
+          password: password,
+        };
+        const usersList = [...users, newUser];
+
+        // Create a new Blob with the updated JSON data
+        const blob = new Blob([usersList], { type: "application/json" });
+
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "updatedData.json"; // The updated file name
+        a.click();
+
+        // Clean up the URL object
+        URL.revokeObjectURL(a.href);
+      });
+      window.location.href = "login.html";
     }
     return false;
   });
