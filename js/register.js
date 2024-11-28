@@ -1,6 +1,7 @@
 $(document).ready(function () {
   // On register button click event
-  $("#register").click(function () {
+  $("#register").click(function (event) {
+    event.preventDefault();
     // Clear previous error messages
     $(".error").text("");
     $("#success").text("");
@@ -14,6 +15,8 @@ $(document).ready(function () {
     const address = $("#address").val();
     const password = $("#password").val();
     const confirmPassword = $("#confirmPassword").val();
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
 
     // Validate First Name
     if (firstName.trim() === "") {
@@ -44,17 +47,13 @@ $(document).ready(function () {
     if (username === "") {
       $("#usernameError").text("Please enter your username.");
       isValid = false;
-    }
-
-    $.getJSON("data/users.json", function (users) {
-      // Check if the user exists in the list
+    } else {
       const userExists = users.some((user) => user.username === username);
-
       if (userExists) {
         $("#usernameError").text("User with username already exists.");
         isValid = false;
       }
-    });
+    }
 
     // Validate address
     if (address === "") {
@@ -75,7 +74,7 @@ $(document).ready(function () {
     } else {
       // Test correct password with regex validation
       const passwordRegex =
-        /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!#%*?&])[A-Za-z\d@$!%#*?&]{8,}$/;
 
       if (!passwordRegex.test(password)) {
         $("#passwordError").text("Please enter correct Password.");
@@ -95,30 +94,26 @@ $(document).ready(function () {
 
     // Show success message if all the fields are valid
     if (isValid) {
-      $.getJSON("data/users.json", function (users) {
-        const newUser = {
-          username: username,
-          email: email,
-          firstName: firstName,
-          lastName: lastName,
-          address: address,
-          gender: gender,
-          password: password,
-        };
-        const usersList = [...users, newUser];
+      const newUser = {
+        username: username,
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+        address: address,
+        gender: gender,
+        password: password,
+      };
 
-        // Create a new Blob with the updated JSON data
-        const blob = new Blob([usersList], { type: "application/json" });
+      users.push(newUser);
 
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = "updatedData.json"; // The updated file name
-        a.click();
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("loggedInUser", JSON.stringify(newUser));
 
-        // Clean up the URL object
-        URL.revokeObjectURL(a.href);
-      });
-      window.location.href = "login.html";
+      $("#success").text("Registration Complete. Redirecting you to our shop.");
+
+      setTimeout(() => {
+        window.location.href = "books.html";
+      }, 3000);
     }
     return false;
   });

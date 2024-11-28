@@ -23,38 +23,7 @@
     <link rel="stylesheet" href="css/base.css" />
   </head>
   <body>
-    <nav class="navbar">
-      <div class="brand">Bookstore.</div>
-      <button class="toggle-btn" id="toggleBtn">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li>
-          <a href="index.html"
-            ><i class="fa-solid fa-house"></i
-            ><span class="navText">Home</span></a
-          >
-        </li>
-        <li>
-          <a href="books.html"
-            ><i class="fa-solid fa-shop"></i
-            ><span class="navText">Shop</span></a
-          >
-        </li>
-        <li>
-          <a href="contact.html"
-            ><i class="fa-solid fa-address-book"></i
-            ><span class="navText">Contact</span></a
-          >
-        </li>
-        <li>
-          <a href="cart.html"
-            ><i class="fa-solid fa-cart-shopping"></i
-            ><span class="navText">Cart</span></a
-          >
-        </li>
-      </ul>
-    </nav>
+    <span id="navigation"></span>
     <div class="container">
       <h1>Register</h1>
       <div class="card">
@@ -111,12 +80,17 @@
             </div>
             <div>
               <label for="confirmPassword">Confirm Password</label>
-              <input type="text" id="confirmPassword" name="confirmPassword" />
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+              />
               <span class="error" id="confirmPasswordError"></span>
             </div>
           </div>
 
           <button class="registerBtn" id="register">Register</button>
+          <p id="success"></p>
         </form>
 
         <p class="account">
@@ -125,5 +99,6 @@
       </div>
     </div>
     <script src="js/register.js"></script>
+    <script src="js/common.js"></script>
   </body>
 </html>

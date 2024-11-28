@@ -102,6 +102,12 @@ body {
   cursor: pointer;
 }
 
+.profilePic {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .nav-links {

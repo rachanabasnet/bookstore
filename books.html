@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shop</title>
 
+    <!-- Jquery plugin -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <!-- Importing google fonts poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,52 +23,13 @@
     <link rel="stylesheet" href="css/base.css" />
   </head>
   <body>
-    <nav class="navbar">
-      <div class="brand">Bookstore.</div>
-      <button class="toggle-btn" id="toggleBtn">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li>
-          <a href="index.html"
-            ><i class="fa-solid fa-house"></i
-            ><span class="navText">Home</span></a
-          >
-        </li>
-        <li>
-          <a href="books.html"
-            ><i class="fa-solid fa-shop"></i
-            ><span class="navText">Shop</span></a
-          >
-        </li>
-        <li>
-          <a href="contact.html"
-            ><i class="fa-solid fa-address-book"></i
-            ><span class="navText">Contact</span></a
-          >
-        </li>
-        <li>
-          <a href="cart.html"
-            ><i class="fa-solid fa-cart-shopping"></i
-            ><span class="navText">Cart</span></a
-          >
-        </li>
-        <li>
-          <a href="login.html">
-            <!-- login -->
-            <!-- <i class="fa-solid fa-right-to-bracket"></i><span class="navText">Login</span> -->
+    <span id="navigation"></span>
 
-            <!-- logout -->
-            <i class="fa-solid fa-right-from-bracket"></i
-            ><span class="navText">Logout</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
     <div class="container">
       <h1 class="shopTitle">Shop</h1>
       <div id="bookContainer"></div>
     </div>
     <script src="js/books.js"></script>
+    <script src="js/common.js"></script>
   </body>
 </html>
