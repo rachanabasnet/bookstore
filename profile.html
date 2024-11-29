@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
+    <title>Profile</title>
 
     <!-- Jquery plugin -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -19,15 +19,19 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="css/profile.css" />
     <link rel="stylesheet" href="css/login.css" />
     <link rel="stylesheet" href="css/base.css" />
   </head>
   <body>
     <span id="navigation"></span>
     <div class="container">
-      <h1>Register</h1>
-      <div class="card">
-        <form id="registerForm" method="post">
+      <div class="profileCard">
+        <h1>Profile</h1>
+        <div id="profileInfo"></div>
+      </div>
+      <div class="profileCard mt-4" id="editDiv">
+        <form method="post">
           <div class="formRow">
             <div>
               <label for="firstName">First Name</label>
@@ -38,19 +42,6 @@
               <label for="lastName">Last Name</label>
               <input type="text" id="lastName" name="last_name" />
               <span class="error" id="lastNameError"></span>
-            </div>
-          </div>
-
-          <div class="formRow">
-            <div>
-              <label for="username">Username</label>
-              <input type="text" id="username" name="username" />
-              <span class="error" id="usernameError"></span>
-            </div>
-            <div>
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" />
-              <span class="error" id="emailError"></span>
             </div>
           </div>
 
@@ -71,34 +62,14 @@
               <br /><span class="error" id="genderError"></span>
             </div>
           </div>
-
-          <div class="formRow">
-            <div>
-              <label for="password">Password</label>
-              <input type="password" id="password" name="password" />
-              <span class="error" id="passwordError"></span>
-            </div>
-            <div>
-              <label for="confirmPassword">Confirm Password</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-              />
-              <span class="error" id="confirmPasswordError"></span>
-            </div>
+          <div class="submitBtn">
+            <button class="btn secBtn" id="save">Save</button>
+            <button class="btn tertiaryBtn" id="cancelBtn">Cancel</button>
           </div>
-
-          <button class="registerBtn" id="register">Register</button>
-          <p id="success"></p>
         </form>
-
-        <p class="account">
-          Already created an account? <a href="login.html"> Log In</a>
-        </p>
       </div>
     </div>
-    <script src="js/register.js"></script>
+    <script src="js/profile.js"></script>
     <script src="js/common.js"></script>
   </body>
 </html>

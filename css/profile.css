@@ -1,0 +1,75 @@
+.container {
+  margin: 16px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+h1 {
+  margin-left: 1rem;
+}
+
+.profileCard {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  background-color: aliceblue;
+  margin-top: 2rem;
+
+  > div {
+    display: grid;
+    grid-template-columns: 40% 60%;
+  }
+
+  .imageDiv {
+    width: 250px;
+  }
+
+  .details {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    margin-top: 2rem;
+
+    .detailKey,
+    .detailValue {
+      > div {
+        margin-bottom: 4px;
+      }
+    }
+  }
+}
+
+.submitBtn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0 1rem;
+}
+
+#editBtn,
+#logout {
+  width: 200px;
+  display: block;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 450px) {
+  .container {
+    width: 100%;
+  }
+
+  .profileCard {
+    > div {
+      grid-template-columns: 1fr;
+    }
+
+    .details {
+      grid-template-columns: 30% 70%;
+    }
+  }
+}

@@ -1,9 +1,11 @@
 $(document).ready(function () {
   const navigation = document.getElementById("navigation");
-  const navBar = document.createElement("nav");
-  navBar.classList.add("navbar");
 
-  navBar.innerHTML = `
+  if (navigation) {
+    const navBar = document.createElement("nav");
+    navBar.classList.add("navbar");
+
+    navBar.innerHTML = `
       <div class="brand">Bookstore.</div>
       <button class="toggle-btn" id="toggleBtn">
         <i class="fa-solid fa-bars"></i>
@@ -34,35 +36,30 @@ $(document).ready(function () {
           >
         </li>
         <li id="login">
+          <a href="login.html" title="Login">
+            <i class="fa-solid fa-right-to-bracket"></i
+            ><span class="navText">LogIn</span>
+          </a>
+        </li>
+        <li id="profile">
           <a href="profile.html">
             <img src="images/default-profile-pic.jpg" class="profilePic"/>
             <span class="navText">Profile</span>
           </a>
         </li>
-        <li id="logout">
-            <a href="#" id="logoutLink">
-                <i class="fa-solid fa-right-from-bracket"></i
-                ><span class="navText">Logout</span>
-            </a>
-        </li>
       </ul>
   `;
 
-  navigation.appendChild(navBar);
+    navigation.appendChild(navBar);
+  }
 
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
   if (loggedInUser) {
     $("#login").hide();
-    $("#logout").show();
+    $("#profile").show();
   } else {
     $("#login").show();
-    $("#logout").hide();
+    $("#profile").hide();
   }
-
-  $("#logoutLink").click(function (event) {
-    event.preventDefault(); // Prevent default link behavior
-    localStorage.removeItem("loggedInUser");
-    window.location.href = "index.html";
-  });
 });
