@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const addToCart = (book, index) => {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  cart.push(book);
+  cart.push({ ...book, quantity: 1 });
 
   localStorage.setItem("cart", JSON.stringify(cart));
 
