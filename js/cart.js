@@ -1,4 +1,11 @@
 $(document).ready(function () {
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  if (!loggedInUser) {
+    alert("You have to log in to view the cart.");
+    window.location.href = "login.html";
+    return;
+  }
   // Get  cart items from the local storage
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   const cartContainer = document.getElementById("cartContainer");

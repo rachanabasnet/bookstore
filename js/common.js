@@ -30,7 +30,7 @@ $(document).ready(function () {
             ><span class="navText">Contact</span></a
           >
         </li>
-        <li>
+        <li id="cart">
           <a href="cart.html"
             ><i class="fa-solid fa-cart-shopping"></i
             ><span class="navText">Cart</span></a
@@ -59,8 +59,10 @@ $(document).ready(function () {
   if (loggedInUser) {
     $("#login").hide();
     $("#profile").show();
+    $("#cart").show();
   } else {
     $("#login").show();
     $("#profile").hide();
+    $("#cart").hide();
   }
 });

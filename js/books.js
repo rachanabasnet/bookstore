@@ -2,8 +2,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("bookContainer");
 
   const renderPage = (search) => {
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
     // Clear previous content
     container.innerHTML = "";
+
+    if (!loggedInUser) {
+      const notLoggedInMsg = document.getElementById("notLoggedInMsg");
+      const message = document.createElement("div");
+      message.innerHTML = `<p>Please log in to view the price and Add to Cart.</p>`;
+      notLoggedInMsg.appendChild(message);
+    }
 
     // Filter books
     const items = search
@@ -27,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p><strong>Pages:</strong> ${book.pages}</p>
           <p><strong>Language:</strong> ${book.language}</p>
           <div class="footer">
-            <div class="price">$${book.price}</div>
+            <div class="price" id="price-${index}">$${book.price}</div>
             <button class="addToCart btn primaryBtn" id="addToCart-${index}">
             Add To Cart <i class="fa-solid fa-cart-plus"></i></button>
             <p class="cartAdded" id="added-${index}" style="display: none;">
@@ -51,13 +60,19 @@ document.addEventListener("DOMContentLoaded", () => {
           $(`#added-${index}`).show();
         });
 
-        const bookExists = cart.some((item) => item.title === book.title);
-        if (bookExists) {
+        if (!loggedInUser) {
+          console.log(loggedInUser);
+          $(`#price-${index}`).hide();
           $(`#addToCart-${index}`).hide();
-          $(`#added-${index}`).show();
         } else {
-          $(`#addToCart-${index}`).show();
-          $(`#added-${index}`).hide();
+          const bookExists = cart.some((item) => item.title === book.title);
+          if (bookExists) {
+            $(`#addToCart-${index}`).hide();
+            $(`#added-${index}`).show();
+          } else {
+            $(`#addToCart-${index}`).show();
+            $(`#added-${index}`).hide();
+          }
         }
       });
     } else {
