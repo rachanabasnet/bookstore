@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Render data into the HTML
   const container = document.getElementById("bookContainer");
 
-  books.forEach((book) => {
+  books.forEach((book, index) => {
     const card = document.createElement("div");
     card.classList.add("card");
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     card.innerHTML = `
         <img src="${book.imageLink}" alt="${book.title}">
@@ -13,14 +14,51 @@ document.addEventListener("DOMContentLoaded", () => {
         <p><strong>Pages:</strong> ${book.pages}</p>
         <p><strong>Language:</strong> ${book.language}</p>
         <div class="footer">
-        <div class="price">$${book.price}</div>
-        <button class="btn primaryBtn">Add To Cart</button></div>
+          <div class="price">$${book.price}</div>
+          <button class="addToCart btn primaryBtn" id="addToCart-${index}">
+          Add To Cart <i class="fa-solid fa-cart-plus"></i></button>
+          <p class="cartAdded" id="added-${index}">Added to Cart!</p>
+        </div>
     `;
 
-    container.appendChild(card);
+    // Append the card and hide it initially
+    $(container).append($(card).hide());
+
+    // Add fade-in effect with a delay
+    $(card)
+      .delay(index * 300)
+      .fadeIn(1000);
+
+    // Add click event listener to the "Add To Cart" button
+    const addToCartButton = card.querySelector(".addToCart");
+    addToCartButton.addEventListener("click", () => {
+      addToCart(book, index);
+    });
+    const bookExists = cart.find((item) => item.title === book.title);
+    if (bookExists) {
+      $(`#addToCart-${index}`).hide();
+      $(`#added-${index}`).show();
+    } else {
+      $(`#addToCart-${index}`).show();
+      $(`#added-${index}`).hide();
+    }
   });
 });
 
+// Function to add the book in the cart
+const addToCart = (book, index) => {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart.push(book);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert(`${book.title} has been added to the cart!`);
+  $(`#addToCart-${index}`).hide();
+  $(`#added-${index}`).show();
+};
+
+// List of books to display in the page
 const books = [
   {
     author: "Chinua Achebe",
@@ -31,7 +69,7 @@ const books = [
     pages: 209,
     title: "Things Fall Apart",
     year: 1958,
-    price: 120,
+    price: 10,
   },
   {
     author: "Hans Christian Andersen",
@@ -42,7 +80,7 @@ const books = [
     pages: 784,
     title: "Fairy tales",
     year: 1836,
-    price: 120,
+    price: 99,
   },
   {
     author: "Dante Alighieri",
@@ -53,7 +91,7 @@ const books = [
     pages: 928,
     title: "The Divine Comedy",
     year: 1315,
-    price: 120,
+    price: 129.99,
   },
   {
     author: "Unknown",
@@ -64,7 +102,7 @@ const books = [
     pages: 160,
     title: "The Epic Of Gilgamesh",
     year: -1700,
-    price: 120,
+    price: 51,
   },
   {
     author: "Unknown",
@@ -75,7 +113,7 @@ const books = [
     pages: 176,
     title: "The Book Of Job",
     year: -600,
-    price: 120,
+    price: 70,
   },
   {
     author: "Unknown",
@@ -86,7 +124,7 @@ const books = [
     pages: 288,
     title: "One Thousand and One Nights",
     year: 1200,
-    price: 120,
+    price: 65,
   },
   {
     author: "Unknown",
@@ -97,7 +135,7 @@ const books = [
     pages: 384,
     title: "Nj\u00e1l's Saga",
     year: 1350,
-    price: 120,
+    price: 19.99,
   },
   {
     author: "Jane Austen",
@@ -119,7 +157,7 @@ const books = [
     pages: 443,
     title: "Le P\u00e8re Goriot",
     year: 1835,
-    price: 120,
+    price: 91,
   },
   {
     author: "Samuel Beckett",
@@ -130,7 +168,7 @@ const books = [
     pages: 256,
     title: "Molloy, Malone Dies, The Unnamable, the trilogy",
     year: 1952,
-    price: 120,
+    price: 71,
   },
   {
     author: "Giovanni Boccaccio",
@@ -141,7 +179,7 @@ const books = [
     pages: 1024,
     title: "The Decameron",
     year: 1351,
-    price: 120,
+    price: 49,
   },
   {
     author: "Jorge Luis Borges",
@@ -152,7 +190,7 @@ const books = [
     pages: 224,
     title: "Ficciones",
     year: 1965,
-    price: 120,
+    price: 30,
   },
   {
     author: "Emily Bront\u00eb",
@@ -163,7 +201,7 @@ const books = [
     pages: 342,
     title: "Wuthering Heights",
     year: 1847,
-    price: 120,
+    price: 54,
   },
   {
     author: "Albert Camus",
@@ -174,7 +212,7 @@ const books = [
     pages: 185,
     title: "The Stranger",
     year: 1942,
-    price: 120,
+    price: 67,
   },
   {
     author: "Paul Celan",
@@ -185,7 +223,7 @@ const books = [
     pages: 320,
     title: "Poems",
     year: 1952,
-    price: 120,
+    price: 94,
   },
   {
     author: "Louis-Ferdinand C\u00e9line",
@@ -196,7 +234,7 @@ const books = [
     pages: 505,
     title: "Journey to the End of the Night",
     year: 1932,
-    price: 120,
+    price: 93,
   },
   {
     author: "Miguel de Cervantes",
@@ -207,7 +245,7 @@ const books = [
     pages: 1056,
     title: "Don Quijote De La Mancha",
     year: 1610,
-    price: 120,
+    price: 199,
   },
   {
     author: "Geoffrey Chaucer",
@@ -229,7 +267,7 @@ const books = [
     pages: 194,
     title: "Stories",
     year: 1886,
-    price: 120,
+    price: 90,
   },
   {
     author: "Joseph Conrad",
@@ -240,7 +278,7 @@ const books = [
     pages: 320,
     title: "Nostromo",
     year: 1904,
-    price: 120,
+    price: 33,
   },
   {
     author: "Charles Dickens",
@@ -251,7 +289,7 @@ const books = [
     pages: 194,
     title: "Great Expectations",
     year: 1861,
-    price: 120,
+    price: 44,
   },
   {
     author: "Denis Diderot",
@@ -262,7 +300,7 @@ const books = [
     pages: 596,
     title: "Jacques the Fatalist",
     year: 1796,
-    price: 120,
+    price: 55,
   },
   {
     author: "Alfred D\u00f6blin",
@@ -273,7 +311,7 @@ const books = [
     pages: 600,
     title: "Berlin Alexanderplatz",
     year: 1929,
-    price: 120,
+    price: 66,
   },
   {
     author: "Fyodor Dostoevsky",
@@ -284,7 +322,7 @@ const books = [
     pages: 551,
     title: "Crime and Punishment",
     year: 1866,
-    price: 120,
+    price: 77,
   },
   {
     author: "Fyodor Dostoevsky",
@@ -295,7 +333,7 @@ const books = [
     pages: 656,
     title: "The Idiot",
     year: 1869,
-    price: 120,
+    price: 87,
   },
   {
     author: "Fyodor Dostoevsky",
@@ -306,7 +344,7 @@ const books = [
     pages: 768,
     title: "The Possessed",
     year: 1872,
-    price: 120,
+    price: 54,
   },
   {
     author: "Fyodor Dostoevsky",
@@ -328,7 +366,7 @@ const books = [
     pages: 800,
     title: "Middlemarch",
     year: 1871,
-    price: 120,
+    price: 34,
   },
   {
     author: "Ralph Ellison",
@@ -339,7 +377,7 @@ const books = [
     pages: 581,
     title: "Invisible Man",
     year: 1952,
-    price: 120,
+    price: 76,
   },
   {
     author: "Euripides",
@@ -350,7 +388,7 @@ const books = [
     pages: 104,
     title: "Medea",
     year: -431,
-    price: 120,
+    price: 23.15,
   },
   {
     author: "William Faulkner",
@@ -372,7 +410,7 @@ const books = [
     pages: 326,
     title: "The Sound and the Fury",
     year: 1929,
-    price: 120,
+    price: 21,
   },
   {
     author: "Gustave Flaubert",
@@ -383,7 +421,7 @@ const books = [
     pages: 528,
     title: "Madame Bovary",
     year: 1857,
-    price: 120,
+    price: 12.99,
   },
   {
     author: "Gustave Flaubert",
@@ -394,7 +432,7 @@ const books = [
     pages: 606,
     title: "Sentimental Education",
     year: 1869,
-    price: 120,
+    price: 90,
   },
   {
     author: "Federico Garc\u00eda Lorca",
@@ -405,7 +443,7 @@ const books = [
     pages: 218,
     title: "Gypsy Ballads",
     year: 1928,
-    price: 120,
+    price: 91,
   },
   {
     author: "Gabriel Garc\u00eda M\u00e1rquez",
@@ -416,7 +454,7 @@ const books = [
     pages: 417,
     title: "One Hundred Years of Solitude",
     year: 1967,
-    price: 120,
+    price: 92,
   },
   {
     author: "Gabriel Garc\u00eda M\u00e1rquez",
@@ -427,7 +465,7 @@ const books = [
     pages: 368,
     title: "Love in the Time of Cholera",
     year: 1985,
-    price: 120,
+    price: 91,
   },
   {
     author: "Johann Wolfgang von Goethe",
@@ -438,7 +476,7 @@ const books = [
     pages: 158,
     title: "Faust",
     year: 1832,
-    price: 120,
+    price: 34,
   },
   {
     author: "Nikolai Gogol",
@@ -449,7 +487,7 @@ const books = [
     pages: 432,
     title: "Dead Souls",
     year: 1842,
-    price: 120,
+    price: 45,
   },
   {
     author: "G\u00fcnter Grass",
@@ -460,7 +498,7 @@ const books = [
     pages: 600,
     title: "The Tin Drum",
     year: 1959,
-    price: 120,
+    price: 54,
   },
   {
     author: "Jo\u00e3o Guimar\u00e3es Rosa",
@@ -471,7 +509,7 @@ const books = [
     pages: 494,
     title: "The Devil to Pay in the Backlands",
     year: 1956,
-    price: 120,
+    price: 99,
   },
   {
     author: "Knut Hamsun",
@@ -493,7 +531,7 @@ const books = [
     pages: 128,
     title: "The Old Man and the Sea",
     year: 1952,
-    price: 120,
+    price: 91,
   },
   {
     author: "Homer",
@@ -504,7 +542,7 @@ const books = [
     pages: 608,
     title: "Iliad",
     year: -735,
-    price: 120,
+    price: 21,
   },
   {
     author: "Homer",
@@ -515,7 +553,7 @@ const books = [
     pages: 374,
     title: "Odyssey",
     year: -800,
-    price: 120,
+    price: 45,
   },
   {
     author: "Henrik Ibsen",
@@ -526,7 +564,7 @@ const books = [
     pages: 68,
     title: "A Doll's House",
     year: 1879,
-    price: 120,
+    price: 91,
   },
   {
     author: "James Joyce",
@@ -537,7 +575,7 @@ const books = [
     pages: 228,
     title: "Ulysses",
     year: 1922,
-    price: 120,
+    price: 45,
   },
   {
     author: "Franz Kafka",
@@ -548,7 +586,7 @@ const books = [
     pages: 488,
     title: "Stories",
     year: 1924,
-    price: 120,
+    price: 65,
   },
   {
     author: "Franz Kafka",
@@ -823,7 +861,7 @@ const books = [
     pages: 842,
     title: "Tales",
     year: 1950,
-    price: 120,
+    price: 96,
   },
   {
     author: "Marcel Proust",
@@ -834,7 +872,7 @@ const books = [
     pages: 2408,
     title: "In Search of Lost Time",
     year: 1920,
-    price: 120,
+    price: 96,
   },
   {
     author: "Fran\u00e7ois Rabelais",
@@ -845,7 +883,7 @@ const books = [
     pages: 623,
     title: "Gargantua and Pantagruel",
     year: 1533,
-    price: 120,
+    price: 96,
   },
   {
     author: "Juan Rulfo",
@@ -856,7 +894,7 @@ const books = [
     pages: 124,
     title: "Pedro P\u00e1ramo",
     year: 1955,
-    price: 120,
+    price: 96,
   },
   {
     author: "Rumi",
@@ -867,7 +905,7 @@ const books = [
     pages: 438,
     title: "The Masnavi",
     year: 1236,
-    price: 120,
+    price: 96,
   },
   {
     author: "Salman Rushdie",
@@ -878,7 +916,7 @@ const books = [
     pages: 536,
     title: "Midnight's Children",
     year: 1981,
-    price: 120,
+    price: 96,
   },
   {
     author: "Saadi",
@@ -889,7 +927,7 @@ const books = [
     pages: 298,
     title: "Bostan",
     year: 1257,
-    price: 120,
+    price: 96,
   },
   {
     author: "Tayeb Salih",
@@ -900,7 +938,7 @@ const books = [
     pages: 139,
     title: "Season of Migration to the North",
     year: 1966,
-    price: 120,
+    price: 96,
   },
   {
     author: "Jos\u00e9 Saramago",
@@ -911,7 +949,7 @@ const books = [
     pages: 352,
     title: "Blindness",
     year: 1995,
-    price: 120,
+    price: 96,
   },
   {
     author: "William Shakespeare",
@@ -922,7 +960,7 @@ const books = [
     pages: 432,
     title: "Hamlet",
     year: 1603,
-    price: 120,
+    price: 91,
   },
   {
     author: "William Shakespeare",
@@ -933,7 +971,7 @@ const books = [
     pages: 384,
     title: "King Lear",
     year: 1608,
-    price: 120,
+    price: 91,
   },
   {
     author: "William Shakespeare",
@@ -944,7 +982,7 @@ const books = [
     pages: 314,
     title: "Othello",
     year: 1609,
-    price: 120,
+    price: 91,
   },
   {
     author: "Sophocles",
@@ -955,7 +993,7 @@ const books = [
     pages: 88,
     title: "Oedipus the King",
     year: -430,
-    price: 120,
+    price: 91,
   },
   {
     author: "Stendhal",
@@ -966,7 +1004,7 @@ const books = [
     pages: 576,
     title: "The Red and the Black",
     year: 1830,
-    price: 120,
+    price: 91,
   },
   {
     author: "Laurence Sterne",
@@ -977,7 +1015,7 @@ const books = [
     pages: 640,
     title: "The Life And Opinions of Tristram Shandy",
     year: 1760,
-    price: 120,
+    price: 91,
   },
   {
     author: "Italo Svevo",
@@ -988,7 +1026,7 @@ const books = [
     pages: 412,
     title: "Confessions of Zeno",
     year: 1923,
-    price: 120,
+    price: 91,
   },
   {
     author: "Jonathan Swift",
@@ -1032,7 +1070,7 @@ const books = [
     pages: 92,
     title: "The Death of Ivan Ilyich",
     year: 1886,
-    price: 120,
+    price: 19,
   },
   {
     author: "Mark Twain",
@@ -1043,7 +1081,7 @@ const books = [
     pages: 224,
     title: "The Adventures of Huckleberry Finn",
     year: 1884,
-    price: 120,
+    price: 19,
   },
   {
     author: "Valmiki",
@@ -1054,7 +1092,7 @@ const books = [
     pages: 152,
     title: "Ramayana",
     year: -450,
-    price: 120,
+    price: 20,
   },
   {
     author: "Virgil",
@@ -1065,7 +1103,7 @@ const books = [
     pages: 442,
     title: "The Aeneid",
     year: -23,
-    price: 120,
+    price: 19,
   },
   {
     author: "Vyasa",
@@ -1076,7 +1114,7 @@ const books = [
     pages: 276,
     title: "Mahabharata",
     year: -700,
-    price: 120,
+    price: 19,
   },
   {
     author: "Walt Whitman",
@@ -1087,7 +1125,7 @@ const books = [
     pages: 152,
     title: "Leaves of Grass",
     year: 1855,
-    price: 120,
+    price: 19,
   },
   {
     author: "Virginia Woolf",
@@ -1120,6 +1158,6 @@ const books = [
     pages: 408,
     title: "Memoirs of Hadrian",
     year: 1951,
-    price: 120,
+    price: 83,
   },
 ];

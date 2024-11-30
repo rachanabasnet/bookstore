@@ -75,6 +75,14 @@
   margin-left: 10px;
 }
 
+.addToCart {
+  width: 150px !important;
+}
+
+.cartAdded {
+  color: green !important;
+}
+
 @media screen and (max-width: 1280px) {
   .container {
     margin: 4px 2rem;
