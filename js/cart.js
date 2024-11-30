@@ -71,10 +71,32 @@ $(document).ready(function () {
 
       const submitBtnDiv = document.createElement("div");
       submitBtnDiv.innerHTML = `
-          <button class="orderBtn">Confirm Order</button>
+          <button class="orderBtn" id="confirmOrder">Confirm Order</button>
     `;
 
       cartContainer.appendChild(submitBtnDiv);
+
+      // Initialize the dialog
+      $("#orderDialog").dialog({
+        autoOpen: false,
+        modal: true,
+        close: () => {
+          localStorage.removeItem("cart");
+          window.location.href = "index.html";
+        },
+      });
+
+      $("#confirmOrder").click(function (event) {
+        event.preventDefault();
+
+        const orderSummary = document.createElement("div");
+        orderSummary.innerHTML = `<p> Total - CAD $${(
+          subTotal + shippingFee
+        ).toFixed(2)}`;
+
+        $("#orderSummary").html(orderSummary);
+        $("#orderDialog").dialog("open");
+      });
     } else {
       const noItemsDiv = document.createElement("div");
       noItemsDiv.classList.add("noItems");

@@ -32,7 +32,6 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
         "Error: Unable to submit your message.";
     }
   } catch (error) {
-    console.error("Error:", error);
     document.getElementById("statusMessage").textContent =
       "Error: Unable to connect to the server.";
   }

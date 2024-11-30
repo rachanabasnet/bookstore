@@ -8,6 +8,18 @@
     <!-- Jquery plugin -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
+    <!-- Jquery UI -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"
+      integrity="sha512-MSOo1aY+3pXCOCdGAYoBZ6YGI0aragoQsg1mKKBHXCYPIWxamwOE7Drh+N5CPgGI5SA9IEKJiPjdfqWFWmZtRA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+
     <!-- Importing google fonts poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,6 +40,11 @@
     <div class="container">
       <h1>Your Cart</h1>
       <div class="card" id="cartContainer"></div>
+    </div>
+
+    <div id="orderDialog" title="Order Successful!" style="display: none">
+      <p>Your order has been placed!</p>
+      <div id="orderSummary"></div>
     </div>
     <script src="js/cart.js"></script>
     <script src="js/common.js"></script>
