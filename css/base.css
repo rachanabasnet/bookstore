@@ -53,10 +53,14 @@ body {
   padding: 10px 20px;
   color: white;
   border-radius: 36px;
-  height: 40px;
+  height: 55px;
   margin: 4px 24px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-family: "Poppins", sans-serif;
+}
+
+.navbar ul {
+  margin-bottom: 0;
 }
 
 .brand {
@@ -119,7 +123,7 @@ body {
     position: absolute;
     top: 50px;
     right: 35px;
-    width: 130px;
+    width: 150px;
     padding: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     border-radius: 16px;

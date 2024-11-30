@@ -7,8 +7,6 @@ $(document).ready(function () {
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    console.log(users);
-
     const username = $("#username").val();
     const password = $("#password").val();
 

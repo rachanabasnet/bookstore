@@ -7,7 +7,8 @@ $(document).ready(function () {
 
     navBar.innerHTML = `
       <div class="brand">Bookstore.</div>
-      <button class="toggle-btn" id="toggleBtn">
+      <button class="toggle-btn" id="toggleBtn" data-bs-toggle="collapse"
+        data-bs-target="#navLinks" aria-controls="navLinks" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fa-solid fa-bars"></i>
       </button>
       <ul class="nav-links" id="navLinks">
