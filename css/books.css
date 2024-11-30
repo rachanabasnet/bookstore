@@ -2,6 +2,34 @@
   margin: 4px 4rem;
 }
 
+.search {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.search input {
+  width: 92%;
+  height: 40px;
+  border: 1px solid #23293f;
+}
+
+.searchIcon {
+  border: 1px solid black;
+  width: 5%;
+  background-color: #23293f;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchIcon i {
+  color: white;
+}
+
 .shopTitle {
   margin: 20px 0;
 }
@@ -81,6 +109,15 @@
 
 .cartAdded {
   color: green !important;
+}
+
+.noBooks {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+  background-color: white;
 }
 
 @media screen and (max-width: 1280px) {

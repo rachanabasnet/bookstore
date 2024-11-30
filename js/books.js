@@ -1,46 +1,94 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Render data into the HTML
   const container = document.getElementById("bookContainer");
 
-  books.forEach((book, index) => {
-    const card = document.createElement("div");
-    card.classList.add("card");
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const renderPage = (search) => {
+    // Clear previous content
+    container.innerHTML = "";
 
-    card.innerHTML = `
-        <img src="${book.imageLink}" alt="${book.title}">
-        <h2>${book.title}</h2>
-        <p><strong>Author:</strong> ${book.author}</p>
-        <p><strong>Pages:</strong> ${book.pages}</p>
-        <p><strong>Language:</strong> ${book.language}</p>
-        <div class="footer">
-          <div class="price">$${book.price}</div>
-          <button class="addToCart btn primaryBtn" id="addToCart-${index}">
-          Add To Cart <i class="fa-solid fa-cart-plus"></i></button>
-          <p class="cartAdded" id="added-${index}">Added to Cart!</p>
-        </div>
-    `;
+    // Filter books
+    const items = search
+      ? books.filter((book) =>
+          book.title.toLowerCase().includes(search.toLowerCase()),
+        )
+      : books;
 
-    // Append the card and hide it initially
-    $(container).append($(card).hide());
+    if (items.length > 0) {
+      // Render each book
+      items.forEach((book, index) => {
+        const card = document.createElement("div");
+        card.classList.add("card");
 
-    // Add fade-in effect with a delay
-    $(card)
-      .delay(index * 300)
-      .fadeIn(1000);
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // Add click event listener to the "Add To Cart" button
-    const addToCartButton = card.querySelector(".addToCart");
-    addToCartButton.addEventListener("click", () => {
-      addToCart(book, index);
-    });
-    const bookExists = cart.find((item) => item.title === book.title);
-    if (bookExists) {
-      $(`#addToCart-${index}`).hide();
-      $(`#added-${index}`).show();
+        card.innerHTML = `
+          <img src="${book.imageLink}" alt="${book.title}">
+          <h2>${book.title}</h2>
+          <p><strong>Author:</strong> ${book.author}</p>
+          <p><strong>Pages:</strong> ${book.pages}</p>
+          <p><strong>Language:</strong> ${book.language}</p>
+          <div class="footer">
+            <div class="price">$${book.price}</div>
+            <button class="addToCart btn primaryBtn" id="addToCart-${index}">
+            Add To Cart <i class="fa-solid fa-cart-plus"></i></button>
+            <p class="cartAdded" id="added-${index}" style="display: none;">
+            Added to Cart!</p>
+          </div>
+      `;
+
+        // Append the card and hide it initially
+        $(container).append($(card).hide());
+
+        // Add fade-in effect with a delay
+        $(card)
+          .delay(index * 300)
+          .fadeIn(1000);
+
+        // Add click event listener to the "Add To Cart" button
+        const addToCartButton = card.querySelector(".addToCart");
+        addToCartButton.addEventListener("click", () => {
+          addToCart(book, index);
+          $(`#addToCart-${index}`).hide();
+          $(`#added-${index}`).show();
+        });
+
+        const bookExists = cart.some((item) => item.title === book.title);
+        if (bookExists) {
+          $(`#addToCart-${index}`).hide();
+          $(`#added-${index}`).show();
+        } else {
+          $(`#addToCart-${index}`).show();
+          $(`#added-${index}`).hide();
+        }
+      });
     } else {
-      $(`#addToCart-${index}`).show();
-      $(`#added-${index}`).hide();
+      const mainContainer = document.getElementById("container");
+
+      const noBooksDiv = document.createElement("div");
+      noBooksDiv.classList.add("noBooks");
+
+      noBooksDiv.innerHTML = `
+        <img src="images/empty-box.png" alt="No Items" width="250" height="250"/>
+        <p>Sorry! No Books Found.</p>
+      `;
+
+      mainContainer.appendChild(noBooksDiv);
+    }
+  };
+
+  renderPage();
+
+  // Search button handler
+  $("#search").click(function (event) {
+    event.preventDefault();
+    const searchText = $("#searchText").val();
+    renderPage(searchText);
+  });
+
+  $("#searchText").on("keydown", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const searchText = $(this).val();
+      renderPage(searchText);
     }
   });
 });
