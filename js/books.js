@@ -61,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (!loggedInUser) {
-          console.log(loggedInUser);
           $(`#price-${index}`).hide();
           $(`#addToCart-${index}`).hide();
         } else {
