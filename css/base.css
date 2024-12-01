@@ -132,6 +132,7 @@ body {
   .nav-links.show {
     display: flex;
     max-height: 300px;
+    z-index: 10;
   }
 
   .nav-links a .navText {

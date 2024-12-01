@@ -29,17 +29,18 @@ h1 {
     width: 250px;
   }
 
-  .details {
+  .profileRow {
     display: grid;
     grid-template-columns: 20% 80%;
-    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
 
-    .detailKey,
-    .detailValue {
-      > div {
-        margin-bottom: 4px;
-      }
-    }
+  .profileRow:first-child {
+    margin-top: 2rem;
+  }
+
+  .profileRow div {
+    word-break: break-all;
   }
 }
 
@@ -68,8 +69,8 @@ h1 {
       grid-template-columns: 1fr;
     }
 
-    .details {
-      grid-template-columns: 30% 70%;
+    .profileRow {
+      grid-template-columns: 1fr;
     }
   }
 }

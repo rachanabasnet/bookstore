@@ -20,17 +20,21 @@ $(document).ready(function () {
   `;
 
   profileDiv2.innerHTML = `
-      <div class="detailKey">
-          <div><strong>Name</strong></div>
-          <div><strong>Email</strong></div>
-          <div><strong>Gender</strong></div>
-          <div><strong>Address</strong></div>
+      <div class="profileRow">
+        <div><strong>Name</strong></div>
+        <div>${user.firstName} ${user.lastName}</div>
       </div>
-      <div class="detailValue">
-          <div>${user.firstName} ${user.lastName}</div>
-          <div>${user.email}</div>
-          <div style="text-transform:capitalize;">${user.gender}</div>
-          <div>${user.address}</div>
+      <div class="profileRow">
+        <div><strong>Email</strong></div>
+        <div>${user.email}</div>
+      </div>
+      <div class="profileRow">
+        <div><strong>Gender</strong></div>
+        <div style="text-transform:capitalize;">${user.gender}</div>
+      </div>
+      <div class="profileRow">
+        <div><strong>Address</strong></div>
+        <div>${user.address}</div>
       </div>
   `;
 
