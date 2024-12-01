@@ -23,10 +23,15 @@ h1 {
 }
 
 .item {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   border-bottom: 1px solid #ddd;
   padding: 15px 0;
+}
+
+.item > div {
+  display: flex;
+  align-items: center;
 }
 
 .item img {
@@ -160,5 +165,14 @@ h1 {
 @media screen and (max-width: 450px) {
   .container {
     width: 80%;
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .itemDetails h2 {
+    word-break: break-all;
   }
 }

@@ -26,17 +26,21 @@ $(document).ready(function () {
         subTotal += itemTotalPrice; // Update subtotal
 
         item.innerHTML = `
-          <img src="${book.imageLink}" alt="${book.title}">
-          <div class="itemDetails">
-              <h2>${book.title}</h2>
-              <p>${book.author}</p>
+          <div>
+            <img src="${book.imageLink}" alt="${book.title}">
+            <div class="itemDetails">
+                <h2>${book.title}</h2>
+                <p>${book.author}</p>
+            </div>
           </div>
-          <div class="itemQuantity">
+          <div>
+            <div class="itemQuantity">
               <button class="reduceQuantity">-</button>
               <div>${book.quantity}</div>
               <button class="addQuantity">+</button>
           </div>
           <p class="itemPrice">$${itemTotalPrice.toFixed(2)}</p>
+          </div>
       `;
 
         cartContainer.appendChild(item);
