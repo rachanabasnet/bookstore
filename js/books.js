@@ -10,7 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!loggedInUser) {
       const notLoggedInMsg = document.getElementById("notLoggedInMsg");
       const message = document.createElement("div");
-      message.innerHTML = `<p>Please log in to view the price and Add to Cart.</p>`;
+      message.innerHTML = `
+      <p style="color: red;">
+      Please log in to view the <b>Price</b> and <b>Add to Cart</b>.
+      <a href="login.html">Log In</a>
+      </p>
+      `;
       notLoggedInMsg.appendChild(message);
     }
 
@@ -39,8 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="price" id="price-${index}">$${book.price}</div>
             <button class="addToCart btn primaryBtn" id="addToCart-${index}">
             Add To Cart <i class="fa-solid fa-cart-plus"></i></button>
-            <p class="cartAdded" id="added-${index}" style="display: none;">
-            Added to Cart!</p>
+            <a href="cart.html" id="added-${index}" style="display: none;">
+            <button class="addToCart btn secBtn">Go to Cart</button>
+            </a>
           </div>
       `;
 
